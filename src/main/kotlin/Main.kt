@@ -32,8 +32,7 @@ private fun cleansingPipeline(inputStream: InputStream): InputStream {
             .filter(String::isNotBlank)
             .joinToString(separator = ",")
 
-        outputStream.write(l.toByteArray())
-        outputStream.write("\n".toByteArray())
+        outputStream.write("$l\n".toByteArray())
     }
     outputStream.flush()
     outputStream.close()
