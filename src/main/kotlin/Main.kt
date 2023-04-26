@@ -9,11 +9,10 @@ aaa,bbb,ccc,,,,
 
 fun main() {
 
-    println(csv.trimIndent())
-    println()
+    val csvTxt = csv.trimIndent()
+    println("$csvTxt\n")
 
-    val inputSteamA = ByteArrayInputStream(csv.trimIndent().toByteArray())
-
+    val inputSteamA = ByteArrayInputStream(csvTxt.toByteArray())
     inputSteamA.use {
         val inputSteamB = cleansingPipeline(it)
         parsingPipeline(inputSteamB)
