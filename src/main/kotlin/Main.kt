@@ -28,15 +28,13 @@ private fun cleansingPipeline(inputStream: InputStream): InputStream {
 
     val reader = BufferedReader(inputStream.reader())
     reader.use { reader ->
-        var line = reader.readLine()
-        while (line != null) {
-            line = line.split(",")
+        for (line in reader.lines()) {
+            line.split(",")
                 .filter(String::isNotBlank)
                 .joinToString(separator = ",")
 
             outputStream.write(line.toByteArray())
             outputStream.write("\n".toByteArray())
-            line = reader.readLine()
         }
         outputStream.flush()
         outputStream.close()
@@ -48,10 +46,8 @@ private fun parsingPipeline(inputStream: InputStream) {
 
     val reader = BufferedReader(inputStream.reader())
     reader.use { reader ->
-        var line = reader.readLine()
-        while (line != null) {
+        for (line in reader.lines()) {
             println(line)
-            line = reader.readLine()
         }
     }
 }
