@@ -7,15 +7,15 @@ aaa,bbb,ccc,,,,
 """
 
 
-fun main(args: Array<String>) {
+fun main() {
 
     println(csv.trimIndent())
     println()
 
     val inputSteamA = ByteArrayInputStream(csv.trimIndent().toByteArray())
 
-    inputSteamA.use { inputSteamA ->
-        val inputSteamB = cleansingPipeline(inputSteamA)
+    inputSteamA.use {
+        val inputSteamB = cleansingPipeline(it)
         parsingPipeline(inputSteamB)
     }
 }
