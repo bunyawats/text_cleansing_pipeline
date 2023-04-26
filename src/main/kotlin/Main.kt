@@ -33,8 +33,8 @@ private fun cleansingPipeline(inputStream: InputStream): InputStream {
             .joinToString(separator = ",")
 
         outputStream.write("$l\n".toByteArray())
+        outputStream.flush()
     }
-    outputStream.flush()
     outputStream.close()
 
     return nextInputSteam
