@@ -27,27 +27,25 @@ private fun cleansingPipeline(inputStream: InputStream): InputStream {
     nextInputSteam.connect(outputStream)
 
     val reader = BufferedReader(inputStream.reader())
-    reader.use { reader ->
-        for (line in reader.lines()) {
-            line.split(",")
-                .filter(String::isNotBlank)
-                .joinToString(separator = ",")
+    reader.forEachLine {
+        val l = it.split(",")
+            .filter(String::isNotBlank)
+            .joinToString(separator = ",")
 
-            outputStream.write(line.toByteArray())
-            outputStream.write("\n".toByteArray())
-        }
-        outputStream.flush()
-        outputStream.close()
+        outputStream.write(l.toByteArray())
+        outputStream.write("\n".toByteArray())
     }
+    outputStream.flush()
+    outputStream.close()
+
     return nextInputSteam
 }
 
 private fun parsingPipeline(inputStream: InputStream) {
 
     val reader = BufferedReader(inputStream.reader())
-    reader.use { reader ->
-        for (line in reader.lines()) {
-            println(line)
-        }
+    reader.forEachLine {
+        println(it)
     }
+
 }
