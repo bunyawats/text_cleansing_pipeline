@@ -44,8 +44,5 @@ private fun cleansingPipeline(inputStream: InputStream): InputStream {
 private fun parsingPipeline(inputStream: InputStream) {
 
     val reader = BufferedReader(inputStream.reader())
-    reader.forEachLine {
-        println(it)
-    }
-
+    reader.forEachLine(::println)
 }
