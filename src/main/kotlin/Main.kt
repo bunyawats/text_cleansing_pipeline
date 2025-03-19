@@ -1,3 +1,5 @@
+package org.ssc
+
 import java.io.*
 
 const val csv = """
@@ -6,8 +8,12 @@ aaa,bbb,ccc,,,,
 987,654,321
 """
 
-
 fun main() {
+    println("Hello World!")
+
+    val text = "qwerirtfpasfdmniiohhlo"
+    val vowelCounts = countVowels(text)
+    println(vowelCounts)
 
     val csvTxt = csv.trimIndent()
     println("$csvTxt\n")
@@ -17,6 +23,17 @@ fun main() {
         val inputSteamB = cleansingPipeline(it)
         parsingPipeline(inputSteamB)
     }
+}
+
+fun countVowels(text: String): Map<Char, Int> {
+    val vowels = "aeiou"
+    val counts = mutableMapOf<Char, Int>().withDefault { 0 }
+    for (char in text) {
+        if (char in vowels) {
+            counts[char] = counts.getValue(char) + 1
+        }
+    }
+    return counts
 }
 
 private fun cleansingPipeline(inputStream: InputStream): InputStream {
